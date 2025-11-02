@@ -1,11 +1,41 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import { GameBoard } from '@/components/GameBoard';
+import { GameStatus } from '@/components/GameStatus';
+import { useGameWebSocket } from '@/hooks/useGameWebSocket';
 
 const Index = () => {
+  const { gameState, isConnected, error, sendMove } = useGameWebSocket();
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="mb-4 text-4xl font-bold">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
+    <div className="min-h-screen bg-background flex items-center justify-center p-4">
+      <div className="w-full max-w-2xl space-y-8">
+        <div className="text-center space-y-2">
+          <h1 className="text-5xl font-bold text-foreground">
+            Tic Tac Toe
+          </h1>
+          <p className="text-muted-foreground">
+            Multiplayer Game
+          </p>
+        </div>
+
+        <div className="flex flex-col items-center gap-6">
+          <GameStatus 
+            currentPlayer={gameState.currentPlayer}
+            isConnected={isConnected}
+            error={error}
+          />
+          
+          <GameBoard
+            gameState={gameState}
+            onCellClick={sendMove}
+            isConnected={isConnected}
+          />
+
+          {!isConnected && (
+            <p className="text-sm text-muted-foreground text-center max-w-md">
+              Make sure the backend server is running on <code className="bg-muted px-2 py-1 rounded">localhost:8080</code>
+            </p>
+          )}
+        </div>
       </div>
     </div>
   );
