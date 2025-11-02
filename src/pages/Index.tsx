@@ -6,13 +6,13 @@ const Index = () => {
   const { gameState, isConnected, error, sendMove } = useGameWebSocket();
 
   return (
-    <div className="min-h-screen bg-background flex items-center justify-center p-4">
+    <div className="min-h-screen bg-gradient-to-br from-primary/10 via-background to-accent/10 flex items-center justify-center p-4">
       <div className="w-full max-w-2xl space-y-8">
-        <div className="text-center space-y-2">
-          <h1 className="text-5xl font-bold text-foreground">
+        <div className="text-center space-y-3">
+          <h1 className="text-6xl font-bold bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent animate-fade-in">
             Tic Tac Toe
           </h1>
-          <p className="text-muted-foreground">
+          <p className="text-lg text-muted-foreground font-medium">
             Multiplayer Game
           </p>
         </div>
